@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashif Ali | Frontend Developer Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-blue: #BF4646;
+            --bg-gray: #f4f4f4;
+            --text-dark: #333333;
+            --text-light: #EDDCC6;
+            --card-white: #ffffff;
+            --border-gray: #dddddd;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- DARK MODE VARIABLES --- */
+        [data-theme="dark"] {
+            --bg-gray: #1a1a1a;
+            --text-dark: black;
+            --card-white: #EDDCC6;
+            --border-gray: #444444;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-white);
+            box-shadow: var(--shadow);
+            overflow: hidden; /* Ensures header corners don't bleed */
+        }
+
+        /* --- UTILITIES --- */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        button:hover { opacity: 0.9; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        header p.title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- SECTION STYLING --- */
+        section {
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        section:last-child { border-bottom: none; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 3px;
+        }
+
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            max-height: 1000px; /* Default expanded */
+        }
+
+        .section-content.collapsed {
+            max-height: 0;
+        }
+
+        /* --- EXPERIENCE & EDUCATION --- */
+        .entry { margin-bottom: 20px; }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+        .entry-subheader {
+            font-style: italic;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+        ul {
+            margin-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: rgba(47, 83, 122, 0.05);
+            padding: 10px;
+            border-radius: 4px;
+            opacity: 0; /* For JS animation */
+            transform: translateY(10px);
+        }
+
+        .skill-item.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease-out;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            section { padding: 20px; }
+            header h1 { font-size: 2rem; }
+            .controls { position: absolute; top: 10px; right: 10px; }
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            .controls, .section-header::after { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+            .section-content { max-height: none !important; }
+            header { background-color: #2f537a !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button id="themeToggle">Kashif Ali</button>
+        <button onclick="window.print()">Print Resume</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Kashif Ali</h1>
+            <p class="title">Frontend Developer</p>
+            <div class="contact-info">
+                Gulberg Lahore Pakistan | (+92) 305-4222516 | kashifali@gmail.com
+            </div>
+        </header>
+
+        <section id="summary">
+            <div class="section-header">
+                <h2>Summary</h2>
+            </div>
+            <div class="section-content">
+                <p>Detail-oriented Frontend Developer experienced in developing responsive and interactive web interfaces using HTML, CSS, JavaScript, and modern frameworks. Focused on performance optimization, accessibility, and delivering high-quality user experiences.</p>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-header">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="section-content">
+                <div class="entry">
+                    <div class="entry-header">
+                        <span>Frontend Developer</span>
+                        <span>Six months experience</span>
+                    </div>
+                    <div class="entry-subheader">Dev.Ai Lahore</div>
+                    
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span>Frontend Trainer</span>
+                        <span>Two Years</span>
+                    </div>
+                    <div class="entry-subheader">Ai solution institute Lahore</div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <div class="section-content">
+                <div class="entry">
+                    <div class="entry-header">
+                        <span>BS(IT)</span>
+                        <span>2019 – 2023</span>
+                    </div>
+                    <div class="entry-subheader">Universty of Punjab,Lahore</div>
+                    
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <span>Intermediate in IT</span>
+                        <span>2017 – 2019</span>
+                    </div>
+                    <div class="entry-subheader">Punjab college,Lahore</div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="section-content">
+                <div class="skills-grid">
+                    <div class="skill-column">
+                        <div class="skill-item"><strong>Semantic HTML5</strong> — Expert</div>
+                        <div class="skill-item"><strong>Advanced CSS</strong> (like the 900px centered layout we used earlier).</div>
+                        <div class="skill-item"><strong>Modern JavaScript</strong> — Expert</div>
+                    </div>
+                    <div class="skill-column">
+                        <div class="skill-item"><strong>Developer Tools</strong> — Advanced</div>
+                        <div class="skill-item"><strong>Microsoft Excel</strong> (PivotTables, Dashboards) — Advanced</div>
+                        <div class="skill-item"><strong>Testing</strong> Manual testing in browser/div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- DARK MODE TOGGLE ---
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        });
+
+        // --- COLLAPSIBLE SECTIONS ---
+        const sectionHeaders = document.querySelectorAll('.section-header');
+        sectionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        // --- SKILLS ANIMATION ON LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('fade-in');
+                }, 150 * index); // Staggered delay
+            });
+        });
+    </script>
+</body>
+</html>
